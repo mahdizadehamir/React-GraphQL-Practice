@@ -1,12 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import { useQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import { GET_USER } from "./GraphQL/queries";
-
-
-function User() {
+function UserOnClick() {
   const [id, setId] = useState(2);
-  const { loading, data, error } = useQuery(GET_USER, {
+  const [getUser, { loading, data, error, called }] = useLazyQuery(GET_USER, {
     variables: { id: id },
   });
   console.log(loading, data, error);
@@ -18,6 +16,9 @@ function User() {
         onChange={(e) => setId(e.target.value)}
         placeholder="Enter ID"
       />
+      <button onClick={() => getUser()}>Get User</button>
+      {loading && <h1>Loading ...</h1>}
+      {error && <h1>An Error Occured</h1>}
       {data && (
         <>
           <h2>{data.user.name}</h2>
@@ -29,4 +30,4 @@ function User() {
   );
 }
 
-export default User;
+export default UserOnClick;
