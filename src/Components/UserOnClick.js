@@ -18,7 +18,7 @@ function UserOnClick() {
       />
       <button onClick={() => getUser()}>Get User</button>
       {loading && <h1>Loading ...</h1>}
-      {error && <h1>An Error Occured</h1>}
+      {error && <h1>An Error Occured!!</h1>}
       {data && (
         <>
           <h2>{data.user.name}</h2>
