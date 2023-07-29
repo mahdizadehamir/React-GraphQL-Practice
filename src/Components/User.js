@@ -1,17 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { GET_USER } from "./GraphQL/queries";
 
-const GET_USER = gql`
-  query getUser($id: ID!) {
-    user(id: $id) {
-      id
-      name
-      email
-      phone
-    }
-  }
-`;
+
 function User() {
   const [id, setId] = useState(2);
   const { loading, data, error } = useQuery(GET_USER, {
