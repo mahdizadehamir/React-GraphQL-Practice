@@ -5,6 +5,7 @@ import { useQuery, gql } from "@apollo/client";
 const GET_USER = gql`
   query getUser($id: ID!) {
     user(id: $id) {
+      id
       name
       email
       phone
@@ -25,6 +26,13 @@ function User() {
         onChange={(e) => setId(e.target.value)}
         placeholder="Enter ID"
       />
+      {data && (
+        <>
+          <p>{data.user.name}</p>
+          <p>{data.user.email}</p>
+          <p>{data.user.phone}</p>
+        </>
+      )}
     </div>
   );
 }
